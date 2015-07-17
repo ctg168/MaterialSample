@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Def>
+    <Huan Name="长度">
+        <item itemname="米" symbol="m" itemdesc="光在真空中1⁄299 792 458秒走过的距离（国际单位制基本单位）" formula="1" formuladesc="≡ 1 m" EqualType="Equal" iscommon="true" issi="true"/>
+        <item itemname="厘米" symbol="cm" itemdesc="一米的百分之一" formula="0.01" formuladesc="≡ 0.01 m" EqualType="Equal" iscommon="true"/>
+        <item itemname="千米" symbol="km" itemdesc="一米的一千倍" formula="1000" formuladesc="≡ 1000 m" EqualType="Equal" iscommon="true"/>
+    </Huan>
+    <Huan Name="面积">
+        <item itemname="平方米" symbol="m2" itemdesc="= 1 m2" formula="1mx1m" formuladesc="≡ 1 m" EqualType="Equal" iscommon="true" issi="true"/>
+    </Huan>
+</Def>

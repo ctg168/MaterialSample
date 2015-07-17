@@ -1,0 +1,33 @@
+<LinearLayout android:id="@+id/listMain"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:gravity="top"
+              android:orientation="vertical"
+              android:paddingLeft="10dp"
+              android:paddingBottom="10dp"
+              android:paddingRight="10dp"
+              android:paddingTop="5dp"
+
+              tools:context="com.terry.materialsample.HuanFragment">
+
+    <TextView
+        android:id="@+id/titleOfHuanList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="换算列表"
+        android:textSize="16sp"
+        />
+
+    <ListView
+        android:id="@+id/lvHuanList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        />
+
+
+</LinearLayout>
