@@ -76,6 +76,7 @@ public class HuanFragment extends Fragment {
 
         HuanItemRecyclerViewAdapter adapter = new HuanItemRecyclerViewAdapter(lengthHuan);
         vHuanList.setAdapter(adapter);
+
     }
 
 
