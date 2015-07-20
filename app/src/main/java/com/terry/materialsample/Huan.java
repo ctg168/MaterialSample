@@ -1,12 +1,13 @@
 package com.terry.materialsample;
 
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public abstract class Huan extends ArrayList<HuanItem> {
+    protected HuanItem ISItem;
+
     private String ObjectName;
-    public List<HuanItem> ItemList;
+
 
     public String getObjectName() {
         return ObjectName;
@@ -16,6 +17,11 @@ public abstract class Huan extends ArrayList<HuanItem> {
         ObjectName = objectName;
     }
 
+
+
+
+
 }
+
 
 

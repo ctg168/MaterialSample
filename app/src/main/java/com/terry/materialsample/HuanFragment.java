@@ -1,31 +1,17 @@
 package com.terry.materialsample;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
 
-import com.terry.materialsample.QuickAdapter.BaseAdapterHelper;
-import com.terry.materialsample.QuickAdapter.QuickAdapter;
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HuanFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HuanFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HuanFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,20 +24,12 @@ public class HuanFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private QuickAdapter<HuanItem> adapter;
 
-    private ListView lvHuanList;
+    private RecyclerView vHuanList;
+
+    private Button btnTest;
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param group Parameter 1.
-     * @param item  Parameter 2.
-     * @return A new instance of fragment HuanFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HuanFragment newInstance(String group, String item) {
         HuanFragment fragment = new HuanFragment();
         Bundle args = new Bundle();
@@ -72,62 +50,32 @@ public class HuanFragment extends Fragment {
             mGroup = getArguments().getString(ARG_GROUP);
             mItem = getArguments().getString(ARG_ITEM);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_huan, container, false);
+        vHuanList = (RecyclerView) v.findViewById(R.id.recy_view);
 
-        TextView textView = (TextView) v.findViewById(R.id.titleOfHuanList);
-        textView.setText(mItem + "换算列表");
-
-        lvHuanList = (ListView) v.findViewById(R.id.lvHuanList);
-
-        LoadHuanList();
-
+        LoadItemList();
         return v;
     }
 
-    private void LoadHuanList() {
-        final LengthHuan lengthHuan = new LengthHuan();
+    private void LoadItemList() {
+        LengthHuan lengthHuan = new LengthHuan();
 
-         adapter = new QuickAdapter<HuanItem>(this.getActivity(), R.layout.huan_item_layout) {
-            @Override
-            protected void convert(BaseAdapterHelper helper, HuanItem item) {
-                helper.setText(R.id.item_name, item.ItemName)
-                        .setText(R.id.item_value, String.valueOf(item.Value));
-                EditText editTextValue = helper.getView(R.id.item_value);
-                editTextValue.addTextChangedListener(new TextWatcher() {
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        //如果每个项目的尺寸是固定的，那么将此项设置为true,可以提高效率。
+        vHuanList.setHasFixedSize(true);
 
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        vHuanList.setLayoutManager(mLayoutManager);
 
-                    public void afterTextChanged(Editable s) {
-                        //System.out.println(s.toString() );
-//                        for (Huan.HuanItem lItem:lengthHuan.ItemList){
-//                            lItem.Value = Double.parseDouble(s.toString());
-//                        }
-
-                      //  Huan.HuanItem newItem = new Huan.HuanItem();
-
-
-
-
-                        //adapter.notifyAll();
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-            }
-        };
-
-        lvHuanList.setAdapter(adapter);
-        adapter.addAll(lengthHuan.ItemList);
-    }
-
-    private void RefreshData(){
-
+        HuanItemRecyclerViewAdapter adapter = new HuanItemRecyclerViewAdapter(lengthHuan);
+        vHuanList.setAdapter(adapter);
     }
 
 
