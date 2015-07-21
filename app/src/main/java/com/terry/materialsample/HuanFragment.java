@@ -10,9 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class HuanFragment extends Fragment {
+public class HuanFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_GROUP = "group";
@@ -24,6 +25,7 @@ public class HuanFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    HuanItemRecyclerViewAdapter adapter;
 
     private RecyclerView vHuanList;
 
@@ -74,7 +76,25 @@ public class HuanFragment extends Fragment {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         vHuanList.setLayoutManager(mLayoutManager);
 
-        HuanItemRecyclerViewAdapter adapter = new HuanItemRecyclerViewAdapter(lengthHuan);
+        adapter = new HuanItemRecyclerViewAdapter(lengthHuan);
+        //adapter.itemChangedListener = this;
+
+        adapter.textChangedListener = new HuanItemRecyclerViewAdapter.TextChangedListener() {
+            @Override
+            public void OnTextChanged(EditText mItemValue) {
+                //if(mItemValue.hasFocus())
+                //mItemValue.setText(String.valueOf(item.Value));
+                System.out.println("fffffffffffffffffffffffffffffffffffocus" + mItemValue.hasFocus());
+
+                adapter.notifyDataSetChanged();
+
+                mItemValue.setFocusable(true);
+                mItemValue.findFocus();
+                mItemValue.requestFocus();
+
+            }
+        };
+
         vHuanList.setAdapter(adapter);
 
     }
@@ -103,6 +123,7 @@ public class HuanFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
