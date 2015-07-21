@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -43,13 +44,14 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
     }
 
     private void doDrawerthing(MenuItem menuItem) {
-
+        View titleArea = findViewById(R.id.title_area);
 
         if (menuItem.getGroupId() == R.id.menu_group_huan) {
+            titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
             HuanFragment huanFragment = HuanFragment.newInstance("huan",menuItem.getTitle().toString());
             this.getFragmentManager().beginTransaction().replace(R.id.contentPanel,huanFragment).commit();
         } else if (menuItem.getGroupId() == R.id.menu_group_dui) {
-
+            titleArea.setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
         }
     }
 

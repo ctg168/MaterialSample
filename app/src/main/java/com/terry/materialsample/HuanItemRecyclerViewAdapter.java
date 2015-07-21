@@ -24,7 +24,7 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
         public ViewHolder(View itemView) {
             super(itemView);
             mItemName = (TextView) itemView.findViewById(R.id.item_name);
-            mItemValue= (EditText) itemView.findViewById(R.id.item_value);
+            mItemValue = (EditText) itemView.findViewById(R.id.item_value);
         }
     }
 
@@ -32,7 +32,8 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
     @Override
     public HuanItemRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup,
                                                                      int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.huan_item_layout, null);
+        View v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.huan_item_layout, viewGroup, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
