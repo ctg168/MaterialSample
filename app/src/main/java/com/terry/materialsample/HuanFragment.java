@@ -81,16 +81,33 @@ public class HuanFragment extends Fragment  {
 
         adapter.textChangedListener = new HuanItemRecyclerViewAdapter.TextChangedListener() {
             @Override
-            public void OnTextChanged(EditText mItemValue) {
+            public void OnTextChanged(final EditText mItemValue) {
                 //if(mItemValue.hasFocus())
                 //mItemValue.setText(String.valueOf(item.Value));
                 System.out.println("fffffffffffffffffffffffffffffffffffocus" + mItemValue.hasFocus());
 
                 adapter.notifyDataSetChanged();
 
-                mItemValue.setFocusable(true);
-                mItemValue.findFocus();
-                mItemValue.requestFocus();
+//                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//                    @Override
+//                    public void onChanged() {
+//                        super.onChanged();
+//
+//                    }
+//                });
+
+
+                mItemValue.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mItemValue.requestFocus();
+                    }
+                });
+
+//
+//                mItemValue.setFocusable(true);
+//                mItemValue.findFocus();
+//                mItemValue.requestFocus();
 
             }
         };
