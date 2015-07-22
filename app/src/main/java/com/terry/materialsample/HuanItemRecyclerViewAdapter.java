@@ -74,6 +74,8 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
         });
 
 
+
+
         viewHolder.mItemValueEditor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
