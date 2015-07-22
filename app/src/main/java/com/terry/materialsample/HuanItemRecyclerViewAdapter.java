@@ -69,6 +69,7 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
                     v.setVisibility(View.INVISIBLE);
                 }
                 return false;
+
             }
         });
 
