@@ -23,15 +23,29 @@
             android:layout_height="wrap_content"
             android:text="米"/>
 
-        <android.support.v7.widget.AppCompatEditText
-            android:layout_marginTop="5dp"
-            android:id="@+id/item_value"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:inputType="numberDecimal"
-            android:text="1"
-            android:layout_weight="1"/>
+            android:layout_marginTop="5dp">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/item_value_editor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:visibility="invisible"
+                android:text="1.0"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/item_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:text="1.0"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

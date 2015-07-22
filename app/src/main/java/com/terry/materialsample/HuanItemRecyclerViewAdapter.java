@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -36,7 +37,43 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
         viewHolder.mItemName.setText(item.ItemName);
         viewHolder.mItemValue.setText(String.valueOf(item.Value));
 
-        viewHolder.mItemValue.addTextChangedListener(new TextWatcher() {
+        viewHolder.mItemValueEditor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+
+                    viewHolder.mItemValue.setVisibility(View.VISIBLE);
+                    viewHolder.mItemValue.setText(viewHolder.mItemValueEditor.getText());
+                    viewHolder.mItemValue.requestFocus();
+
+                    v.setVisibility(View.INVISIBLE);
+
+
+                } else {
+
+                }
+            }
+        });
+
+
+        viewHolder.mItemValue.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    viewHolder.mItemValueEditor.setVisibility(View.VISIBLE);
+                    viewHolder.mItemValueEditor.setText(String.valueOf(item.Value));
+                    viewHolder.mItemValueEditor.requestFocus();
+
+                    v.setVisibility(View.INVISIBLE);
+                }
+                return false;
+            }
+        });
+
+
+        viewHolder.mItemValueEditor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 System.out.println("before change!");
@@ -44,12 +81,6 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (viewHolder.mItemValue.hasFocus()) {
-                    if (textChangedListener != null) {
-                        textChangedListener.OnTextChanged(viewHolder.mItemValue);
-                    }
-
-                }
 
                 if (s.length() > 0) {
                     for (HuanItem sitem : mDataset) {
@@ -60,22 +91,18 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
                         }
                     }
                 }
+
+                //if(viewHolder.mItemValueEditor.hasFocus()) {
+                if (textChangedListener != null) {
+                    textChangedListener.OnTextChanged(viewHolder.mItemValueEditor);
+                }
+                //}
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
 
-
-//        viewHolder.mItemValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) {
-//                    EditText editText = (EditText) v;
-//                    editText.selectAll();
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -85,14 +112,16 @@ public class HuanItemRecyclerViewAdapter extends RecyclerView.Adapter<HuanItemRe
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mItemName;
-        public EditText mItemValue;
+        public TextView mItemValue;
+        public EditText mItemValueEditor;
 
         private boolean onBind;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mItemName = (TextView) itemView.findViewById(R.id.item_name);
-            mItemValue = (EditText) itemView.findViewById(R.id.item_value);
+            mItemValue = (TextView) itemView.findViewById(R.id.item_value);
+            mItemValueEditor = (EditText) itemView.findViewById(R.id.item_value_editor);
         }
     }
 

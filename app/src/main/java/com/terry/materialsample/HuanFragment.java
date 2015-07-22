@@ -84,7 +84,7 @@ public class HuanFragment extends Fragment  {
             public void OnTextChanged(final EditText mItemValue) {
                 //if(mItemValue.hasFocus())
                 //mItemValue.setText(String.valueOf(item.Value));
-                System.out.println("fffffffffffffffffffffffffffffffffffocus" + mItemValue.hasFocus());
+//                System.out.println("fffffffffffffffffffffffffffffffffffocus" + mItemValue.hasFocus());
 
                 adapter.notifyDataSetChanged();
 
@@ -97,12 +97,12 @@ public class HuanFragment extends Fragment  {
 //                });
 
 
-                mItemValue.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mItemValue.requestFocus();
-                    }
-                });
+//                mItemValue.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mItemValue.requestFocus();
+//                    }
+//                });
 
 //
 //                mItemValue.setFocusable(true);
