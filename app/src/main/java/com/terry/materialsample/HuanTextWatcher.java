@@ -6,21 +6,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Locale;
 
 public class HuanTextWatcher implements TextWatcher {
 
     ViewGroup container;
-    View view;
-    HuanItem item;
+    View Sender;
+    HuanItem SourceItem;
+    Huan ItemSet;
 
-    HashSet<Integer> editorIds;
+    DecimalFormat decimalFormatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+    DecimalFormatSymbols symbols = decimalFormatter.getDecimalFormatSymbols();
 
-    public HuanTextWatcher(ViewGroup container,HuanItem item, View view, HashSet<Integer> editorIds) {
+    public HuanTextWatcher(ViewGroup container, HuanItem sourceItem, View sender, Huan itemSet) {
         this.container = container;
-        this.item = item;
-        this.view = view;
-        this.editorIds = editorIds;
+        this.SourceItem = sourceItem;
+        this.Sender = sender;
+        this.ItemSet = itemSet;
+
+        symbols.setGroupingSeparator(',');
+        decimalFormatter.setDecimalFormatSymbols(symbols);
+
     }
 
     @Override
@@ -30,28 +40,25 @@ public class HuanTextWatcher implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if(!view.isFocused()) return;
+        if (!Sender.isFocused()) return;
 
-        int sourceId = view.getId();
+        int sourceId = Sender.getId();
 
-        System.out.println(String.format("On text changed on %s in %s", s, view.getId()));
+        System.out.println(String.format("On text changed on %s in %s", s, Sender.getId()));
         if (s.length() > 0) {
+            double TargetValue = Double.parseDouble(s.toString());
+            for (HuanItem item : ItemSet) {
+                if (item.EditorId != sourceId) {
 
-            double value = Double.parseDouble(s.toString() + "0");
-
-            for (Integer id : editorIds) {
-                if (id != sourceId) {
-//                    System.out.println(String.format("____________________id:%s sourceId: %s", id, sourceId));
-//                    System.out.println(String.format("____________________find view by id:%s", container.findViewById(id)));
-                    EditText editText = (EditText) container.findViewById(id);
-                    editText.setText(String.valueOf(value));
+                    EditText editText = (EditText) container.findViewById(item.EditorId);
+                    // editText.setText(String.format("%,.2f", String.valueOf(TargetValue / item.formula)));
+                    editText.setText(decimalFormatter.format(TargetValue / item.formula));
                 }
             }
-
         } else {
-            for (Integer id : editorIds) {
-                if (id != sourceId) {
-                    EditText editText = (EditText) container.findViewById(id);
+            for (HuanItem item : ItemSet) {
+                if (item.EditorId != sourceId) {
+                    EditText editText = (EditText) container.findViewById(item.EditorId);
                     editText.setText("");
                 }
             }
@@ -62,4 +69,6 @@ public class HuanTextWatcher implements TextWatcher {
     public void afterTextChanged(Editable s) {
         System.out.println(String.format("After text changed on %s", s));
     }
+
+
 }

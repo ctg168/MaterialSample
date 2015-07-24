@@ -100,19 +100,10 @@ public class HuanFragment extends Fragment {
             editText.setId(item.EditorId);
             editIds.add(item.EditorId);
 
-            lstMain.addView(cardView);
-        }
+            HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, huan);
+            editText.addTextChangedListener(watcher);
 
-        for (HuanItem item : huan) {
-            EditText editText = (EditText) lstMain.findViewById(item.EditorId);
-            if (editText != null) {
-                HuanTextWatcher watcher = new HuanTextWatcher(lstMain,item, editText, editIds);
-                editText.addTextChangedListener(watcher);
-            }
-            else
-            {
-                throw new RuntimeException("not found!!");
-            }
+            lstMain.addView(cardView);
         }
     }
 
