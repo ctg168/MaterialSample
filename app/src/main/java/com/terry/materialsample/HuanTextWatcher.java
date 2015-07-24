@@ -32,8 +32,6 @@ public class HuanTextWatcher implements TextWatcher {
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if(!view.isFocused()) return;
 
-        //System.out.println(String.format("On text changed on: %s - %s", SourceItem.Id, s));
-
         int sourceId = view.getId();
 
         System.out.println(String.format("On text changed on %s in %s", s, view.getId()));
