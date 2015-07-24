@@ -7,6 +7,9 @@ public class HuanItem {
 
     public HuanItem() {}
 
+    public int EditorId;
+
+    public int Id;
     public boolean IsSI;           //是否SI单位
     public String ItemName;        //名称
     public String Symbol;          //符号
@@ -17,7 +20,8 @@ public class HuanItem {
     public EqualTypeEnum EqualType;   //等于类型
     public double Value;              //计算出的值
 
-    public HuanItem(String itemName, String symbol, EqualTypeEnum equalType, double formula, String formulaDesc, boolean isCommon, boolean isSI, String itemDesc) {
+    public HuanItem(int id, String itemName, String symbol, EqualTypeEnum equalType, double formula, String formulaDesc, boolean isCommon, boolean isSI, String itemDesc) {
+        this.Id = id;
         EqualType = equalType;
         this.formula = formula;
         this.formulaDesc = formulaDesc;

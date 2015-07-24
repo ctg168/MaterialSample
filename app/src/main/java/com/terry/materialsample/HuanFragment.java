@@ -4,16 +4,23 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class HuanFragment extends Fragment  {
+import java.util.HashSet;
+
+public class HuanFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_GROUP = "group";
@@ -23,11 +30,14 @@ public class HuanFragment extends Fragment  {
     private String mGroup;
     private String mItem;
 
+    private Huan huan;
+
+
     private OnFragmentInteractionListener mListener;
 
-    HuanItemRecyclerViewAdapter adapter;
 
-    private RecyclerView vHuanList;
+    private LinearLayout lstMain;
+
 
     private Button btnTest;
 
@@ -45,6 +55,7 @@ public class HuanFragment extends Fragment  {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,62 +71,50 @@ public class HuanFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_huan, container, false);
-        vHuanList = (RecyclerView) v.findViewById(R.id.recy_view);
 
-        LoadItemList();
+        lstMain = (LinearLayout) v.findViewById(R.id.listMain);
+
+        LoadItemList(inflater);
+
+
         return v;
     }
 
-    private void LoadItemList() {
-        LengthHuan lengthHuan = new LengthHuan();
+    private void LoadItemList(LayoutInflater inflater) {
+        huan = new LengthHuan();
 
-        //如果每个项目的尺寸是固定的，那么将此项设置为true,可以提高效率。
-        vHuanList.setHasFixedSize(true);
+        int editorId = 55550;
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        vHuanList.setLayoutManager(mLayoutManager);
+        HashSet<Integer> editIds = new HashSet<>();
 
-        adapter = new HuanItemRecyclerViewAdapter(lengthHuan);
-        //adapter.itemChangedListener = this;
+        for (HuanItem item : huan) {
+            CardView cardView = (CardView) inflater.inflate(R.layout.huan_item_layout, lstMain, false);
 
-        adapter.textChangedListener = new HuanItemRecyclerViewAdapter.TextChangedListener() {
-            @Override
-            public void OnTextChanged(final EditText mItemValue) {
-                //if(mItemValue.hasFocus())
-                //mItemValue.setText(String.valueOf(item.Value));
-//                System.out.println("fffffffffffffffffffffffffffffffffffocus" + mItemValue.hasFocus());
+            TextView textView = (TextView) cardView.findViewById(R.id.item_name);
+            textView.setText(item.ItemName);
 
-                adapter.notifyDataSetChanged();
+            EditText editText = (EditText) cardView.findViewById(R.id.item_value_editor);
+            editText.setText(String.valueOf(item.Value));
 
-//                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//                    @Override
-//                    public void onChanged() {
-//                        super.onChanged();
-//
-//                    }
-//                });
+            item.EditorId = ++editorId;
+            editText.setId(item.EditorId);
+            editIds.add(item.EditorId);
 
+            lstMain.addView(cardView);
+        }
 
-//                mItemValue.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mItemValue.requestFocus();
-//                    }
-//                });
-
-//
-//                mItemValue.setFocusable(true);
-//                mItemValue.findFocus();
-//                mItemValue.requestFocus();
-
+        for (HuanItem item : huan) {
+            EditText editText = (EditText) lstMain.findViewById(item.EditorId);
+            if (editText != null) {
+                HuanTextWatcher watcher = new HuanTextWatcher(lstMain,item, editText, editIds);
+                editText.addTextChangedListener(watcher);
             }
-        };
-
-        vHuanList.setAdapter(adapter);
-
+            else
+            {
+                throw new RuntimeException("not found!!");
+            }
+        }
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

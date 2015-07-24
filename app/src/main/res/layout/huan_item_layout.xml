@@ -35,15 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:visibility="invisible"
                 android:text="1.0"/>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/item_value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:text="1.0"/>
 
         </FrameLayout>
 

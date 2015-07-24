@@ -13,12 +13,4 @@
               android:paddingTop="5dp"
               tools:context="com.terry.materialsample.HuanFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:id = "@+id/recy_view"
-        app:cardCornerRadius = "6dp">
-
-    </android.support.v7.widget.RecyclerView>
-
 </LinearLayout>
