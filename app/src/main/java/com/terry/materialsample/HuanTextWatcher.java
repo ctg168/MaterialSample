@@ -54,6 +54,7 @@ public class HuanTextWatcher implements TextWatcher {
         System.out.println(String.format("On text changed on %s in %s", s, Sender.getId()));
         if (s.length() > 0) {
 
+
             //文本值转换成标准值
             BigDecimal StdValue = new BigDecimal(s.toString()).multiply(SourceItem.formula);
 
