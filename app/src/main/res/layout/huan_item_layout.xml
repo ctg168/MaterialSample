@@ -30,7 +30,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp">
 
-            <android.support.v7.widget.AppCompatEditText
+            <com.terry.materialsample.HuanItemEditText
                 android:id="@+id/item_value_editor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

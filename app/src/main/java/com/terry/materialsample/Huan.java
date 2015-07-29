@@ -17,10 +17,12 @@ public abstract class Huan extends ArrayList<HuanItem> {
         ObjectName = objectName;
     }
 
-
-
-
-
+    public HuanItem getISItem() {
+        for (HuanItem item : this) {
+            if (item.IsSI) return item;
+        }
+        throw new RuntimeException("没有标准单位!");
+    }
 }
 
 

@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 public class MainActivity extends AppCompatActivity implements HuanFragment.OnFragmentInteractionListener {
 
@@ -48,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
 
         if (menuItem.getGroupId() == R.id.menu_group_huan) {
             titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
-            HuanFragment huanFragment = HuanFragment.newInstance("huan",menuItem.getTitle().toString());
-            this.getFragmentManager().beginTransaction().replace(R.id.contentPanel,huanFragment).commit();
+            HuanFragment huanFragment = HuanFragment.newInstance("huan", menuItem.getTitle().toString());
+            this.getFragmentManager().beginTransaction().replace(R.id.contentPanel, huanFragment).commit();
         } else if (menuItem.getGroupId() == R.id.menu_group_dui) {
             titleArea.setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
         }

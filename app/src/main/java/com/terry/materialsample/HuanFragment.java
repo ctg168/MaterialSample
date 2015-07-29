@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 
 public class HuanFragment extends Fragment {
@@ -93,14 +94,17 @@ public class HuanFragment extends Fragment {
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
             textView.setText(item.ItemName);
 
-            EditText editText = (EditText) cardView.findViewById(R.id.item_value_editor);
-            editText.setText(String.valueOf(item.Value));
+            HuanItemEditText editText = (HuanItemEditText) cardView.findViewById(R.id.item_value_editor);
+            editText.setEditItem(item);
+            editText.setText(String.valueOf(BigDecimal.ZERO));
 
             item.EditorId = ++editorId;
             editText.setId(item.EditorId);
             editIds.add(item.EditorId);
 
             HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, huan);
+
+
             editText.addTextChangedListener(watcher);
 
             lstMain.addView(cardView);
