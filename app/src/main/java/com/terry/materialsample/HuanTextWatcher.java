@@ -37,7 +37,7 @@ public class HuanTextWatcher implements TextWatcher {
 
         symbols.setGroupingSeparator(',');
         decimalFormatter.setDecimalFormatSymbols(symbols);
-        decimalFormatter.setMaximumFractionDigits(10);
+        decimalFormatter.setMaximumFractionDigits(100);
     }
 
     @Override
@@ -59,11 +59,9 @@ public class HuanTextWatcher implements TextWatcher {
 
             for (HuanItem item : mHuan) {
                 if (item.EditorId != sourceId) {
-                    BigDecimal rValue = StdValue.divide(item.formula, 10, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal rValue = StdValue.divide(item.formula, 50, BigDecimal.ROUND_HALF_EVEN);
                     String aValue = decimalFormatter.format(rValue);
-
                     EditText editText = (EditText) container.findViewById(item.EditorId);
-                    // editText.setText(String.format("%,.2f", String.valueOf(TargetValue / item.formula)));
                     editText.setText(aValue);
                 }
             }
