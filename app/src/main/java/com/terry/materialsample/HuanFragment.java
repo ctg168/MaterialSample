@@ -1,5 +1,6 @@
 package com.terry.materialsample;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.Fragment;
 import android.net.Uri;
@@ -30,8 +31,6 @@ public class HuanFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mGroup;
     private String mItem;
-
-    private Huan huan;
 
 
     private OnFragmentInteractionListener mListener;
@@ -82,11 +81,9 @@ public class HuanFragment extends Fragment {
     }
 
     private void LoadItemList(LayoutInflater inflater) {
-        huan = new LengthHuan();
+        Huan huan = new LengthHuan();
 
         int editorId = 55550;
-
-        HashSet<Integer> editIds = new HashSet<>();
 
         for (HuanItem item : huan) {
             CardView cardView = (CardView) inflater.inflate(R.layout.huan_item_layout, lstMain, false);
@@ -100,7 +97,6 @@ public class HuanFragment extends Fragment {
 
             item.EditorId = ++editorId;
             editText.setId(item.EditorId);
-            editIds.add(item.EditorId);
 
             HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, huan);
 
