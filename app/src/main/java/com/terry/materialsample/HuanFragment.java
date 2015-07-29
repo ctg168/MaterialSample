@@ -34,13 +34,7 @@ public class HuanFragment extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
-
-
     private LinearLayout lstMain;
-
-
-    private Button btnTest;
-
 
     public static HuanFragment newInstance(String group, String item) {
         HuanFragment fragment = new HuanFragment();
@@ -64,19 +58,14 @@ public class HuanFragment extends Fragment {
             mItem = getArguments().getString(ARG_ITEM);
         }
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_huan, container, false);
-
         lstMain = (LinearLayout) v.findViewById(R.id.listMain);
-
         LoadItemList(inflater);
-
-
         return v;
     }
 
