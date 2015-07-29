@@ -23,6 +23,5 @@ public class LengthHuan extends Huan {
         this.add(huanItem_zhang);
         this.add(huanItem_chi);
         this.add(huanItem_cun);
-
     }
 }
