@@ -10,14 +10,15 @@
     android:paddingTop="5dp"
     tools:context="com.terry.materialsample.HuanFragment">
 
-    <LinearLayout
+    <com.terry.materialsample.AnimatedLinearLayout
         android:id="@+id/listMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:background="#fff"
         android:gravity="top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
-    </LinearLayout>
+    </com.terry.materialsample.AnimatedLinearLayout>
 </ScrollView>

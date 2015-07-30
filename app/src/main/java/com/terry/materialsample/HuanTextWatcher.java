@@ -52,10 +52,21 @@ public class HuanTextWatcher implements TextWatcher {
             //文本值转换成标准值
             BigDecimal StdValue = new BigDecimal(s.toString()).multiply(SourceItem.formula);
 
+
+            DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getInstance(Locale.CHINESE);
+            decimalFormat.setMaximumFractionDigits(50);
+            String x1 = decimalFormat.format(StdValue);
+
+
             for (HuanItem item : mHuan) {
                 if (item.EditorId != sourceId) {
+                    BigDecimal aValue = StdValue.divide(item.formula, 50, BigDecimal.ROUND_HALF_EVEN);
+                    //BigDecimal bValue = StdValue.divide(item.formula, RoundingMode.HALF_EVEN);
+
+                    String rValue = decimalFormat.format(aValue);
+
                     EditText editText = (EditText) container.findViewById(item.EditorId);
-                    editText.setText(decimalFormatter.format(StdValue.divide(item.formula, 50, BigDecimal.ROUND_HALF_EVEN)));
+                    editText.setText(rValue);
                 }
             }
         } else {
