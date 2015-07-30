@@ -71,7 +71,20 @@ public class HuanFragment extends Fragment {
     }
 
     private void LoadItemList() {
-        Huan huan = new LengthHuan();
+        Huan huan;
+        if (mItem.equals("长度")) {
+            huan = new HuanData.LengthHuan();
+        }
+        else if(mItem.equals("面积"))
+        {
+            huan = new HuanData.AreaHuan();
+        }
+        else
+        {
+            huan = new HuanData.LengthHuan();
+        }
+
+
         int editorId = huan.getTypeId();
 
         for (HuanItem item : huan) {
