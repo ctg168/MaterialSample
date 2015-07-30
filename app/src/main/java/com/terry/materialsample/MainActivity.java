@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements HuanFragment.OnFragmentInteractionListener {
 
-    private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private TextView textViewTitle;
 
@@ -27,12 +26,10 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
         setContentView(R.layout.activity_main);
 
         textViewTitle = (TextView) findViewById(R.id.title);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

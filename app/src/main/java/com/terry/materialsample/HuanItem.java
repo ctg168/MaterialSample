@@ -11,7 +11,7 @@ public class HuanItem {
 
     public int EditorId;
 
-    public int Id;
+    public CharSequence Id;
     public boolean IsSI;           //是否SI单位
     public String ItemName;        //名称
     public String Symbol;          //符号
@@ -22,8 +22,7 @@ public class HuanItem {
     public EqualTypeEnum EqualType;   //等于类型
     public BigDecimal Value;              //计算出的值
 
-    public HuanItem(int id, String itemName, String symbol, EqualTypeEnum equalType, BigDecimal formula, String formulaDesc, boolean isCommon, boolean isSI, String itemDesc) {
-        this.Id = id;
+    public HuanItem(String itemName, String symbol, EqualTypeEnum equalType, BigDecimal formula, String formulaDesc, boolean isCommon, boolean isSI, String itemDesc) {
         EqualType = equalType;
         this.formula = formula;
         this.formulaDesc = formulaDesc;

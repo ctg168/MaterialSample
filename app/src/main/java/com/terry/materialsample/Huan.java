@@ -6,8 +6,12 @@ import java.util.ArrayList;
 public abstract class Huan extends ArrayList<HuanItem> {
     protected HuanItem ISItem;
 
-    private String ObjectName;
+    public int getTypeId() {
+        return 10000;
+    }
 
+    private int TypeId;
+    private String ObjectName;
 
     public String getObjectName() {
         return ObjectName;

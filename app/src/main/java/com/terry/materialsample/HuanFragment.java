@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -65,17 +66,18 @@ public class HuanFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_huan, container, false);
         lstMain = (LinearLayout) v.findViewById(R.id.listMain);
-        LoadItemList(inflater);
+        LoadItemList();
         return v;
     }
 
-    private void LoadItemList(LayoutInflater inflater) {
+    private void LoadItemList() {
         Huan huan = new LengthHuan();
-
-        int editorId = 55550;
+        int editorId = huan.getTypeId();
 
         for (HuanItem item : huan) {
-            CardView cardView = (CardView) inflater.inflate(R.layout.huan_item_layout, lstMain, false);
+
+            CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
+
 
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
             textView.setText(item.ItemName);
@@ -89,10 +91,10 @@ public class HuanFragment extends Fragment {
 
             HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, huan);
 
-
             editText.addTextChangedListener(watcher);
 
             lstMain.addView(cardView);
+
         }
     }
 

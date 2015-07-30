@@ -24,7 +24,6 @@ public class HuanTextWatcher implements TextWatcher {
 
 
     DecimalFormat decimalFormatter = (DecimalFormat) NumberFormat.getInstance(Locale.CHINESE);
-    //DecimalFormat decimalFormatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
     DecimalFormatSymbols symbols = decimalFormatter.getDecimalFormatSymbols();
 
     public HuanTextWatcher(ViewGroup container, HuanItem sourceItem, HuanItemEditText sender, Huan itemSet) {
@@ -41,9 +40,7 @@ public class HuanTextWatcher implements TextWatcher {
     }
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -51,19 +48,14 @@ public class HuanTextWatcher implements TextWatcher {
         int sourceId = Sender.getId();
         SourceItem = Sender.getEditItem(); //编辑项
 
-        System.out.println(String.format("On text changed on %s in %s", s, Sender.getId()));
         if (s.length() > 0) {
-
-
             //文本值转换成标准值
             BigDecimal StdValue = new BigDecimal(s.toString()).multiply(SourceItem.formula);
 
             for (HuanItem item : mHuan) {
                 if (item.EditorId != sourceId) {
-                    BigDecimal rValue = StdValue.divide(item.formula, 50, BigDecimal.ROUND_HALF_EVEN);
-                    String aValue = decimalFormatter.format(rValue);
                     EditText editText = (EditText) container.findViewById(item.EditorId);
-                    editText.setText(aValue);
+                    editText.setText(decimalFormatter.format(StdValue.divide(item.formula, 50, BigDecimal.ROUND_HALF_EVEN)));
                 }
             }
         } else {
@@ -77,9 +69,5 @@ public class HuanTextWatcher implements TextWatcher {
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
-        System.out.println(String.format("After text changed on %s", s));
-    }
-
-
+    public void afterTextChanged(Editable s) {}
 }
