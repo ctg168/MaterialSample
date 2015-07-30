@@ -1,29 +1,20 @@
 package com.terry.materialsample;
 
-import android.animation.LayoutTransition;
 import android.app.Activity;
-import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 
-public class HuanFragment extends Fragment {
+public class HuanFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_GROUP = "group";
@@ -32,6 +23,8 @@ public class HuanFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mGroup;
     private String mItem;
+
+    private Huan CurrentHuan;
 
 
     private OnFragmentInteractionListener mListener;
@@ -50,6 +43,40 @@ public class HuanFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void LoadData() {
+        if (mItem.equals(getResources().getString(R.string.menu_huan_title_01))) {
+            CurrentHuan = new HuanData.LengthHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_deep_orange_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_02))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_deep_purple_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_03))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_yellow_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_04))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_blue_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_05))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_blue_grey_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_06))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_brown_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_07))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_cyan_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_08))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_green_500);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_09))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_indigo_600);
+        } else {
+            CurrentHuan = new HuanData.LengthHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_deep_orange_600);
+        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +84,8 @@ public class HuanFragment extends Fragment {
         if (getArguments() != null) {
             mGroup = getArguments().getString(ARG_GROUP);
             mItem = getArguments().getString(ARG_ITEM);
+            LoadData();
         }
-
     }
 
     @Override
@@ -71,26 +98,14 @@ public class HuanFragment extends Fragment {
     }
 
     private void LoadItemList() {
-        Huan huan;
-        if (mItem.equals("长度")) {
-            huan = new HuanData.LengthHuan();
-        }
-        else if(mItem.equals("面积"))
-        {
-            huan = new HuanData.AreaHuan();
-        }
-        else
-        {
-            huan = new HuanData.LengthHuan();
-        }
 
 
-        int editorId = huan.getTypeId();
+        int editorId = CurrentHuan.getTypeId();
 
-        for (HuanItem item : huan) {
+
+        for (HuanItem item : CurrentHuan) {
 
             CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
-
 
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
             textView.setText(item.ItemName);
@@ -102,11 +117,18 @@ public class HuanFragment extends Fragment {
             item.EditorId = ++editorId;
             editText.setId(item.EditorId);
 
-            HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, huan);
+            HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, CurrentHuan);
 
             editText.addTextChangedListener(watcher);
 
+//            Animation animation = new TranslateAnimation(200,0,0,0);
+//            animation.setDuration(100);
+//            animation.setFillAfter(true);
+//            cardView.setAnimation(animation);
+//            animation.startNow();
+
             lstMain.addView(cardView);
+
 
         }
     }

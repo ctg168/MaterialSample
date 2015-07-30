@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
         View titleArea = findViewById(R.id.title_area);
 
         if (menuItem.getGroupId() == R.id.menu_group_huan) {
-            titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
+
             HuanFragment huanFragment = HuanFragment.newInstance("huan", menuItem.getTitle().toString());
             this.getFragmentManager().beginTransaction().replace(R.id.contentPanel, huanFragment).commit();
+            //titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
+            titleArea.setBackgroundColor(huanFragment.CurrentThemeColor);
         } else if (menuItem.getGroupId() == R.id.menu_group_dui) {
             titleArea.setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
         }
