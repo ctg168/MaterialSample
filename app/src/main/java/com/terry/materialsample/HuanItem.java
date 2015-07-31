@@ -23,13 +23,13 @@ public class HuanItem {
     public BigDecimal Value;              //计算出的值
 
     public HuanItem(String itemName, String symbol, EqualTypeEnum equalType, BigDecimal formula, String formulaDesc, boolean isCommon, boolean isSI, String itemDesc) {
-        EqualType = equalType;
+        this.EqualType = equalType;
         this.formula = formula;
         this.formulaDesc = formulaDesc;
-        IsCommon = isCommon;
-        IsSI = isSI;
-        ItemDesc = itemDesc;
-        ItemName = itemName;
-        Symbol = symbol;
+        this.IsCommon = isCommon;
+        this.IsSI = isSI;
+        this.ItemDesc = itemDesc;
+        this.ItemName = itemName;
+        this.Symbol = symbol;
     }
 }

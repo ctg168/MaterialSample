@@ -49,8 +49,9 @@ public class HuanTextWatcher implements TextWatcher {
         SourceItem = Sender.getEditItem(); //编辑项
 
         if (s.length() > 0) {
+
             //文本值转换成标准值
-            BigDecimal StdValue = new BigDecimal(s.toString()).multiply(SourceItem.formula);
+            BigDecimal StdValue = new BigDecimal(s.toString().replace(",", "")).multiply(SourceItem.formula);
 
 
             DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getInstance(Locale.CHINESE);

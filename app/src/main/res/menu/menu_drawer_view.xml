@@ -2,23 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single" android:id="@+id/menu_group_huan">
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_01"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_02"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_03"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_04"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_05"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_06"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_07"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_08"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_09"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_10"/>
-        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_11"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Length"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Area"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Volume"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Weight"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Density"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_DigitalStorage"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Force"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Pressure"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Temperature"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Power"/>
+        <item android:icon="@mipmap/ic_forum" android:title="@string/menu_huan_title_Speed"/>
     </group>
 
     <group android:checkableBehavior="single" android:id="@+id/menu_group_dui">
-        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_01"/>
-        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_02"/>
-        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_03"/>
+        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_Currency"/>
+        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_Interest"/>
+        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_Fund"/>
+        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_CarLoan"/>
+        <item android:icon="@mipmap/ic_event" android:title="@string/menu_dui_title_MortgageRates"/>
     </group>
 
     <!--<item android:title="单位换算">-->

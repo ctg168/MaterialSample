@@ -4,27 +4,23 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_huan_title_01">长度</string>
-    <string name="menu_huan_title_02">面积</string>
-    <string name="menu_huan_title_03">体积</string>
-    <string name="menu_huan_title_04">质量</string>
-    <string name="menu_huan_title_05">密度</string>
-    <string name="menu_huan_title_06">数据存储</string>
-    <string name="menu_huan_title_07">克拉</string>
-    <string name="menu_huan_title_08">常用单位</string>
-    <string name="menu_huan_title_09">力</string>
-    <string name="menu_huan_title_10">压强</string>
-    <string name="menu_huan_title_11">温度</string>
-    <string name="menu_huan_title_14">比热容</string>
-    <string name="menu_huan_title_15">热功</string>
-    <string name="menu_huan_title_16">功率</string>
-    <string name="menu_huan_title_17">速度</string>
+    <string name="menu_huan_title_Length">长度</string>
+    <string name="menu_huan_title_Area">面积</string>
+    <string name="menu_huan_title_Volume">体积</string>
+    <string name="menu_huan_title_Weight">重量</string>
+    <string name="menu_huan_title_Density">密度</string>
+    <string name="menu_huan_title_DigitalStorage">数据存储</string>
+    <string name="menu_huan_title_Force">力</string>
+    <string name="menu_huan_title_Pressure">压强</string>
+    <string name="menu_huan_title_Temperature">温度</string>
+    <string name="menu_huan_title_Power">功率</string>
+    <string name="menu_huan_title_Speed">速度</string>
 
-    <string name="menu_dui_title_01">货币兑换</string>
-    <string name="menu_dui_title_02">银行利率</string>
-    <string name="menu_dui_title_03">公积金计算</string>
-    <string name="menu_dui_title_04">车贷计算</string>
-    <string name="menu_dui_title_05">房贷计算</string>
+    <string name="menu_dui_title_Currency">货币兑换</string>
+    <string name="menu_dui_title_Interest">银行利率</string>
+    <string name="menu_dui_title_Fund">公积金计算</string>
+    <string name="menu_dui_title_CarLoan">车贷计算</string>
+    <string name="menu_dui_title_MortgageRates">房贷计算</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

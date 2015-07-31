@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,42 +46,44 @@ public class HuanFragment extends BaseFragment {
 
     public void LoadData() {
         System.out.println("HuanFragment.LoadData");
-        if (mItem.equals(getResources().getString(R.string.menu_huan_title_01))) {
+        if (mItem.equals(getResources().getString(R.string.menu_huan_title_Length))) {
             CurrentHuan = new HuanData.LengthHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_blue);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_02))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Area))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_green);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_03))) {
-            CurrentHuan = new HuanData.AreaHuan();
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Volume))) {
+            CurrentHuan = new HuanData.VolumnHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_green_dark);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_04))) {
-            CurrentHuan = new HuanData.AreaHuan();
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Weight))) {
+            CurrentHuan = new HuanData.WeightHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_blue_dark);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_05))) {
-            CurrentHuan = new HuanData.AreaHuan();
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_DigitalStorage))) {
+            CurrentHuan = new HuanData.DataStorageHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_orange);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_06))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Density))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_orange_dark);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_07))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Force))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_purple);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_08))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Pressure))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_purple_dark);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_09))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Power))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_red);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_10))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Temperature))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.app_red_dark);
-        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_11))) {
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Power))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.md_light_blue_600);
-        } else {
-            CurrentHuan = new HuanData.LengthHuan();
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Speed))) {
+            CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.md_light_green_600);
+        } else {
+            throw new RuntimeException("stub!");
         }
     }
 
@@ -118,23 +121,23 @@ public class HuanFragment extends BaseFragment {
 
 
         for (HuanItem item : CurrentHuan) {
+            item.EditorId = ++editorId;
 
             CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
 
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
-            textView.setText(item.ItemName);
+
+            textView.setText(Html.fromHtml(String.format("%s(%s)", item.ItemName, item.Symbol)));
+
             textView.setTextColor(this.CurrentThemeColor);
 
             HuanItemEditText editText = (HuanItemEditText) cardView.findViewById(R.id.item_value_editor);
-            editText.setEditItem(item);
-            editText.setText(String.valueOf(BigDecimal.ZERO));
-            editText.setTextColor(getResources().getColor(R.color.md_grey_600));
-
-            item.EditorId = ++editorId;
             editText.setId(item.EditorId);
+            editText.setEditItem(item);
+            editText.setTextColor(getResources().getColor(R.color.md_grey_600));
+            editText.setHint(Html.fromHtml(item.ItemDesc));
 
             HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, CurrentHuan);
-
             editText.addTextChangedListener(watcher);
 
 //            Animation animation = new TranslateAnimation(200,0,0,0);
