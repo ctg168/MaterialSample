@@ -44,6 +44,7 @@ public class HuanFragment extends BaseFragment {
     }
 
     public void LoadData() {
+        System.out.println("HuanFragment.LoadData");
         if (mItem.equals(getResources().getString(R.string.menu_huan_title_01))) {
             CurrentHuan = new HuanData.LengthHuan();
             CurrentThemeColor = getResources().getColor(R.color.md_deep_orange_600);
@@ -84,7 +85,7 @@ public class HuanFragment extends BaseFragment {
         if (getArguments() != null) {
             mGroup = getArguments().getString(ARG_GROUP);
             mItem = getArguments().getString(ARG_ITEM);
-            LoadData();
+
         }
     }
 
@@ -94,11 +95,18 @@ public class HuanFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_huan, container, false);
         lstMain = (LinearLayout) v.findViewById(R.id.listMain);
         LoadItemList();
+
+        if (mListener != null) {
+            mListener.onFragmentInteraction(HuanFragment.this);
+            System.out.println("mListener.onFragmentInteraction(HuanFragment.this) & HuanFragment.onCreate");
+        }
         return v;
     }
 
     private void LoadItemList() {
+        System.out.println("HuanFragment.LoadItemList");
 
+        LoadData();
 
         int editorId = CurrentHuan.getTypeId();
 
@@ -133,12 +141,6 @@ public class HuanFragment extends BaseFragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -170,7 +172,7 @@ public class HuanFragment extends BaseFragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(HuanFragment sender);
     }
 
 }

@@ -44,16 +44,17 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
     }
 
     private void doDrawerthing(MenuItem menuItem) {
-        View titleArea = findViewById(R.id.title_area);
+
 
         if (menuItem.getGroupId() == R.id.menu_group_huan) {
 
             HuanFragment huanFragment = HuanFragment.newInstance("huan", menuItem.getTitle().toString());
             this.getFragmentManager().beginTransaction().replace(R.id.contentPanel, huanFragment).commit();
             //titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
-            titleArea.setBackgroundColor(huanFragment.CurrentThemeColor);
+            //huanFragment.LoadData();
+
         } else if (menuItem.getGroupId() == R.id.menu_group_dui) {
-            titleArea.setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
+            findViewById(R.id.title_area).setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
         }
     }
 
@@ -79,8 +80,10 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
+    @Override
+    public void onFragmentInteraction(HuanFragment sender) {
+        View titleArea = findViewById(R.id.title_area);
+        titleArea.setBackgroundColor(sender.CurrentThemeColor);
     }
 }
