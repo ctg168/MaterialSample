@@ -2,9 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="172dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
                 android:orientation="vertical"
-                android:paddingLeft="25dp"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:background="@drawable/title"
+    >
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentBottom="true"
+        android:text="常用查询"
+        android:id="@+id/textView"/>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.terry.materialsample;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
 
     private DrawerLayout drawerLayout;
     private TextView textViewTitle;
+
+    private int CurrentThemeColor;
 
 
     @Override
@@ -80,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
 
     @Override
     public void onFragmentInteraction(HuanFragment sender) {
+        CurrentThemeColor = sender.CurrentThemeColor;
+
         View titleArea = findViewById(R.id.title_area);
-        titleArea.setBackgroundColor(sender.CurrentThemeColor);
+        titleArea.setBackgroundColor(CurrentThemeColor);
     }
 }

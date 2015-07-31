@@ -47,34 +47,34 @@ public class HuanFragment extends BaseFragment {
         System.out.println("HuanFragment.LoadData");
         if (mItem.equals(getResources().getString(R.string.menu_huan_title_01))) {
             CurrentHuan = new HuanData.LengthHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_deep_orange_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_blue);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_02))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_deep_purple_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_green);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_03))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_yellow_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_green_dark);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_04))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_blue_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_blue_dark);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_05))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_blue_grey_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_orange);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_06))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_brown_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_orange_dark);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_07))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_cyan_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_purple);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_08))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_green_500);
+            CurrentThemeColor = getResources().getColor(R.color.app_purple_dark);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_09))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_indigo_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_red);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_10))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_grey_600);
+            CurrentThemeColor = getResources().getColor(R.color.app_red_dark);
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_11))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.md_light_blue_600);
@@ -123,10 +123,12 @@ public class HuanFragment extends BaseFragment {
 
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
             textView.setText(item.ItemName);
+            textView.setTextColor(this.CurrentThemeColor);
 
             HuanItemEditText editText = (HuanItemEditText) cardView.findViewById(R.id.item_value_editor);
             editText.setEditItem(item);
             editText.setText(String.valueOf(BigDecimal.ZERO));
+            editText.setTextColor(getResources().getColor(R.color.md_grey_600));
 
             item.EditorId = ++editorId;
             editText.setId(item.EditorId);

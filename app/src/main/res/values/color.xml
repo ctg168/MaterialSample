@@ -5,20 +5,20 @@
     <color name = "colorAccent">#F1433C</color>
     <color name="window_background">#FFF5F5F5</color>
 
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
-    <color name="light">#ffeeeeee</color>
-    <color name="dark">#ff212121</color>
-    <color name="blue">#ff33b5e5</color>
-    <color name="blue_dark">#ff0099cc</color>
-    <color name="purple">#ffaa66cc</color>
-    <color name="purple_dark">#ff9933cc</color>
-    <color name="green">#ff99cc00</color>
-    <color name="green_dark">#ff669900</color>
-    <color name="orange">#ffffbb33</color>
-    <color name="orange_dark">#ffff8800</color>
-    <color name="red">#ffff4444</color>
-    <color name="red_dark">#ffcc0000</color>
-    <color name="hint_light">#ff333333</color>
-    <color name="hint_dark">#ffeeeeee</color>
+    <color name="app_white">#ffffffff</color>
+    <color name="app_black">#ff000000</color>
+    <color name="app_light">#ffeeeeee</color>
+    <color name="app_dark">#ff212121</color>
+    <color name="app_blue">#ff33b5e5</color>
+    <color name="app_blue_dark">#ff0099cc</color>
+    <color name="app_purple">#ffaa66cc</color>
+    <color name="app_purple_dark">#ff9933cc</color>
+    <color name="app_green">#ff99cc00</color>
+    <color name="app_green_dark">#ff669900</color>
+    <color name="app_orange">#ffffbb33</color>
+    <color name="app_orange_dark">#ffff8800</color>
+    <color name="app_red">#ffff4444</color>
+    <color name="app_red_dark">#ffcc0000</color>
+    <color name="app_hint_light">#ff333333</color>
+    <color name="app_hint_dark">#ffeeeeee</color>
 </resources>
