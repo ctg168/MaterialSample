@@ -72,9 +72,15 @@ public class HuanFragment extends BaseFragment {
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_09))) {
             CurrentHuan = new HuanData.AreaHuan();
             CurrentThemeColor = getResources().getColor(R.color.md_indigo_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_10))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_grey_600);
+        } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_11))) {
+            CurrentHuan = new HuanData.AreaHuan();
+            CurrentThemeColor = getResources().getColor(R.color.md_light_blue_600);
         } else {
             CurrentHuan = new HuanData.LengthHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_deep_orange_600);
+            CurrentThemeColor = getResources().getColor(R.color.md_light_green_600);
         }
     }
 
