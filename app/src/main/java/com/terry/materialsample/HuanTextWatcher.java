@@ -50,8 +50,11 @@ public class HuanTextWatcher implements TextWatcher {
 
         if (s.length() > 0) {
 
+            if (s.toString().startsWith(".")) {s = "0" + s;}
+            s = s.toString().replace(",","");
+
             //文本值转换成标准值
-            BigDecimal StdValue = new BigDecimal(s.toString().replace(",", "")).multiply(SourceItem.formula);
+            BigDecimal StdValue = new BigDecimal(s.toString()).multiply(SourceItem.formula);
 
 
             DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getInstance(Locale.CHINESE);

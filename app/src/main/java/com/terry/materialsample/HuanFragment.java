@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -123,33 +124,29 @@ public class HuanFragment extends BaseFragment {
         for (HuanItem item : CurrentHuan) {
             item.EditorId = ++editorId;
 
+            //容器
             CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
 
+            //文本
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
-
             textView.setText(Html.fromHtml(String.format("%s(%s)", item.ItemName, item.Symbol)));
-
             textView.setTextColor(this.CurrentThemeColor);
 
+            //编辑框
             HuanItemEditText editText = (HuanItemEditText) cardView.findViewById(R.id.item_value_editor);
             editText.setId(item.EditorId);
             editText.setEditItem(item);
             editText.setTextColor(getResources().getColor(R.color.md_grey_600));
             editText.setHint(Html.fromHtml(item.ItemDesc));
 
+            //编辑框文本改变时，其他文本框的值跟着变
             HuanTextWatcher watcher = new HuanTextWatcher(lstMain, item, editText, CurrentHuan);
             editText.addTextChangedListener(watcher);
 
-//            Animation animation = new TranslateAnimation(200,0,0,0);
-//            animation.setDuration(100);
-//            animation.setFillAfter(true);
-//            cardView.setAnimation(animation);
-//            animation.startNow();
-
+            //最后装箱，把CardView放到LinearLayout中。
             lstMain.addView(cardView);
-
-
         }
+
     }
 
 
