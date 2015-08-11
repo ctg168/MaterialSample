@@ -1,15 +1,19 @@
 package com.terry.materialsample;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Html;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -121,11 +125,20 @@ public class HuanFragment extends BaseFragment {
         int editorId = CurrentHuan.getTypeId();
 
 
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        final int width = size.x;
+        int height = size.y;
+
+       // System.out.println(String.format("h:%s w:%s", height, width));
+
+        int i = 0;
         for (HuanItem item : CurrentHuan) {
             item.EditorId = ++editorId;
 
             //容器
-            CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
+            final CardView cardView = (CardView) LayoutInflater.from(this.getActivity()).inflate(R.layout.huan_item_layout, lstMain, false);
 
             //文本
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
@@ -145,8 +158,21 @@ public class HuanFragment extends BaseFragment {
 
             //最后装箱，把CardView放到LinearLayout中。
             lstMain.addView(cardView);
-        }
 
+
+            Animation a = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cardView.getLayoutParams();
+                    params.leftMargin = (int) (width * (1 - interpolatedTime));
+                    cardView.setLayoutParams(params);
+                }
+            };
+
+            a.setStartOffset(100 * i++);
+            a.setDuration(500);
+            cardView.startAnimation(a);
+        }
     }
 
 
