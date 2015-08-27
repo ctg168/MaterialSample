@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
                 return true;
             }
         });
+
+        //load default form
+        HuanFragment huanFragment = HuanFragment.newInstance("huan", getResources().getString(R.string.menu_huan_title_Length));
+        this.getFragmentManager().beginTransaction().replace(R.id.contentPanel, huanFragment).commit();
+        textViewTitle.setText(getResources().getString(R.string.menu_huan_title_Length));
     }
 
     private void doDrawerthing(MenuItem menuItem) {
