@@ -47,43 +47,45 @@ public class HuanFragment extends BaseFragment {
         System.out.println("HuanFragment.LoadData");
         if (mItem.equals(getResources().getString(R.string.menu_huan_title_Length))) {
             CurrentHuan = new HuanData.LengthHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_blue);
+            CurrentThemeColor = R.color.colorPrimary;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Area))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_green);
+            CurrentThemeColor = R.color.app_green;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Volume))) {
             CurrentHuan = new HuanData.VolumnHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_green_dark);
+            CurrentThemeColor = R.color.app_green_dark;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Weight))) {
             CurrentHuan = new HuanData.WeightHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_blue_dark);
+            CurrentThemeColor = R.color.colorPrimary;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_DigitalStorage))) {
             CurrentHuan = new HuanData.DataStorageHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_orange);
+            CurrentThemeColor = R.color.app_orange;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Density))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_orange_dark);
+            CurrentThemeColor = R.color.app_orange_dark;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Force))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_purple);
+            CurrentThemeColor = R.color.app_purple;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Pressure))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_purple_dark);
+            CurrentThemeColor = R.color.app_purple_dark;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Power))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_red);
+            CurrentThemeColor = R.color.app_red;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Temperature))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.app_red_dark);
+            CurrentThemeColor = R.color.app_red_dark;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Power))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_light_blue_600);
+            CurrentThemeColor = R.color.md_light_blue_600;
         } else if (mItem.equals(getResources().getString(R.string.menu_huan_title_Speed))) {
             CurrentHuan = new HuanData.AreaHuan();
-            CurrentThemeColor = getResources().getColor(R.color.md_light_green_600);
+            CurrentThemeColor = R.color.md_light_green_600;
         } else {
             throw new RuntimeException("stub!");
         }
+
+
     }
 
 
@@ -135,7 +137,7 @@ public class HuanFragment extends BaseFragment {
             //文本
             TextView textView = (TextView) cardView.findViewById(R.id.item_name);
             textView.setText(Html.fromHtml(String.format("%s(%s)", item.ItemName, item.Symbol)));
-            textView.setTextColor(this.CurrentThemeColor);
+            textView.setTextColor(getResources().getColor(this.CurrentThemeColor));
 
             //编辑框
             HuanItemEditText editText = (HuanItemEditText) cardView.findViewById(R.id.item_value_editor);

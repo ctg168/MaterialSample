@@ -1,7 +1,6 @@
 package com.terry.materialsample;
 
-import android.graphics.Color;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -9,10 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 
 public class MainActivity extends AppCompatActivity implements HuanFragment.OnFragmentInteractionListener {
@@ -61,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
             //titleArea.setBackgroundColor(getResources().getColor(R.color.md_amber_300));
             //huanFragment.LoadData();
 
+
+
+
         } else if (menuItem.getGroupId() == R.id.menu_group_dui) {
             findViewById(R.id.title_area).setBackgroundColor(getResources().getColor(R.color.md_deep_orange_600));
         }
@@ -91,6 +92,14 @@ public class MainActivity extends AppCompatActivity implements HuanFragment.OnFr
         CurrentThemeColor = sender.CurrentThemeColor;
 
         View titleArea = findViewById(R.id.title_area);
-        titleArea.setBackgroundColor(CurrentThemeColor);
+        titleArea.setBackgroundColor(getResources().getColor(CurrentThemeColor));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(CurrentThemeColor));
+            window.setNavigationBarColor(getResources().getColor(CurrentThemeColor));
+        }
     }
 }
